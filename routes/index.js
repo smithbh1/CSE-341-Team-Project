@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
+router.use('/', require('./swagger'));
 router.use('/user', require('./user'));
 router.use('/goal', require('./goal'));
 router.use('/plan', require('./plan'));
