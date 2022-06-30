@@ -36,7 +36,7 @@ const getSingle = async (req, res, next) => {
 
 const addOne = async (req, res, next) => {
     // #swagger.tags = ['User']
-    const userInfo = new Goal(req.body);
+    const userInfo = new User(req.body);
     userInfo.save()
         .then((data) => {
             console.log(data);
