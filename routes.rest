@@ -42,3 +42,22 @@ Content-Type: application/json
    }
         
 }
+
+###
+GET http://localhost:8080/user
+
+###
+POST http://localhost:8080/user HTTP/1.1
+Content-Type: application/json
+
+{
+   "user":{
+        "userName": "Mr.Shredded",
+        "password": "123456789",
+        "age": 22,
+        "sex": "male",
+        "height": "5'8",
+        "weight": 175.2
+   }
+        
+}
