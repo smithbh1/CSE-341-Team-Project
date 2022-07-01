@@ -1,7 +1,7 @@
 
 module.exports = (mongoose) => {
-    const Event = mongoose.model(
-      'events',
+    const Diet = mongoose.model(
+      'diets',
       mongoose.Schema({
         diet: {
             description: {
@@ -30,5 +30,5 @@ module.exports = (mongoose) => {
       })
     );
   
-    return Event;
+    return Diet;
   };
