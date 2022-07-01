@@ -11,9 +11,9 @@ const config = {
     authRequired: false,
     auth0Logout: true,
     secret: process.env.SECRET,
-    baseURL: process.env.BASE_URL_LOCAL,
+    // baseURL: process.env.BASE_URL_LOCAL,
     //push to heroku comment ou the line above and use the line below!!!
-    //baseURL: process.env.BASE_URL,
+    baseURL: process.env.BASE_URL,
     clientID: process.env.CLIENT_ID,
     issuerBaseURL: process.env.ISSUER_BASE_URL
   };
