@@ -22,3 +22,23 @@ Content-Type: application/json
             "weightTime": "10"
         }
 }
+
+###
+GET http://localhost:8080/diet
+
+###
+POST http://localhost:8080/diet HTTP/1.1
+Content-Type: application/json
+
+{
+   "diet":{
+        "description": "Loose 10 lb's in 5 weeks",
+        "dietName": "Loose 10 diet",
+        "calories": "1800",
+        "protein": "200",
+        "carbs": "900",
+        "sugar": "0",
+        "weight": "175"
+   }
+        
+}
