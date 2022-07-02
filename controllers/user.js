@@ -7,14 +7,18 @@ const getAll = async (req, res, next) => {
     User
         .find()
         .then((data) => {
-            if (data) {
+            if (!data) res.status(404).send({ message: 'Nothing to Display' });
+            else {
                 res.send(data);
                 console.log(data);
             }
-            else {
-                res.status(404).send({ message: 'No data to display.' });
-            }
         })
+        .catch((err) => {
+            res.status(500).send({
+                message: 'Error retrieving Goal',
+                error: err
+            });
+        });
 };
 
 const getSingle = async (req, res, next) => {
