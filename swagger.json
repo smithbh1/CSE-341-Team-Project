@@ -182,14 +182,94 @@
         ],
         "description": "",
         "parameters": [],
-        "responses": {}
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
       },
       "post": {
         "tags": [
           "Plan"
         ],
-        "description": "",
-        "parameters": [],
+        "description": "Process to create a plan",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "diet": {
+                  "type": "object",
+                  "properties": {
+                    "description": {
+                      "type": "string"
+                    },
+                    "dietName": {
+                      "type": "string"
+                    },
+                    "calories": {
+                      "type": "number"
+                    },
+                    "protein": {
+                      "type": "number"
+                    },
+                    "carbs": {
+                      "type": "number"
+                    },
+                    "sugar": {
+                      "type": "number"
+                    }
+                  } 
+                },
+                "workout": {
+                  "type": "object",
+                  "properties": {
+                    "description": {
+                      "type": "string"
+                    },
+                    "cardio": {
+                      "type": "object",
+                      "properties": {
+                        "name": {
+                          "type": "string"
+                        },
+                        "numberDays": {
+                          "type": "number"
+                        },
+                        "time": {
+                          "type": "string"
+                        }
+                      }                      
+                    },
+                    "lifting": {
+                      "type": "object",
+                      "properties": {
+                        "muscleGroup": {
+                          "type": "string"
+                        },
+                        "numberDays": {
+                          "type": "number"
+                        },
+                        "time": {
+                          "type": "string"
+                        }
+                      }                      
+                    }
+                  }
+                  
+                }  
+              }
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK"

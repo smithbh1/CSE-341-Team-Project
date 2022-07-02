@@ -35,7 +35,7 @@ module.exports = (mongoose) => {
                     type: Number
                 },
                 time: {
-                    type: Number
+                    type: String
                 }
             },
             lifting: {
@@ -46,7 +46,7 @@ module.exports = (mongoose) => {
                     type: Number
                 },
                 time: {
-                    type: Number
+                    type: String
                 }
             }
         }     
