@@ -20,7 +20,19 @@ const getAll = async (req, res, next) => {
 
 const getSingle = async (req,res,next) => {
     // #swagger.tags = ['Plan']
-
+    if(!ObjectId.isValid(req.params.id)) {
+        res.status(404).json('Must use a valid id to find the right plan');
+    }
+    const planId = new ObjectId(req.params.id);
+    planId
+    .find({_id: planId})
+    .toArray((err, result) => {
+        if (err) {
+            res.status(404).json({ message: err });
+        }
+        res.setHeader('Content-Type', 'application/json');
+        res.status(200).json(result[0]);
+    });
 };
 
 const addOne = async (req,res,next) => {

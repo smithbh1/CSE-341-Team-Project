@@ -84,7 +84,7 @@ Content-Type: application/json
             "time": "6:00 am"
         },
         "lifting":{
-            "name": "Earn it",
+            "muscleGroup": "Earn it",
             "numberDays": 25,
             "time": "6:00 pm"
         }
