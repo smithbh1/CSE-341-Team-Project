@@ -7,17 +7,14 @@ const getAll = async (req, res, next) => {
     User
         .find()
         .then((data) => {
-            if (!data) res.status(404).send({ message: 'Nothing to Display' });
-            else {
+            if (!data) {
+                res.status(404).send({ message: 'No pusers to display' })
+            } else {
                 res.send(data);
                 console.log(data);
             }
-        })
-        .catch((err) => {
-            res.status(500).send({
-                message: 'Error retrieving Goal',
-                error: err
-            });
+        }).catch((err) => {
+            res.status(500).send({ message: 'Error retrieving your plan', error: err });
         });
 };
 
@@ -40,15 +37,15 @@ const getSingle = async (req, res, next) => {
 
 const addOne = async (req, res, next) => {
     // #swagger.tags = ['User']
-    const userInfo = new User(req.body);
-    userInfo.save()
+    const user = new User(req.body);
+    user.save()
         .then((data) => {
             console.log(data);
             res.status(201).send(data);
         })
         .catch((err) => {
             res.status(500).send({
-                message: err.message || 'Error occured while making user contact info.'
+                message: err.message || 'Error occured while making user contact.'
             });
         });
 };
