@@ -43,8 +43,11 @@ Content-Type: application/json
         
 }
 
-###
+###GET all
 GET http://localhost:8080/user
+
+###GET by id
+GET http://localhost:8080/user/62c1f6c7dfee719cf9b45196
 
 ###
 POST http://localhost:8080/user HTTP/1.1
@@ -53,15 +56,28 @@ Content-Type: application/json
 {
         "userName": "Mr.Shredded",
         "password": "123456789",
-        "age": 22,
+        "age": 23,
         "sex": "male",
         "height": "5'8",
         "weight": 175.2
    }
         
+###PUT
+PUT http://localhost:8080/user/62c1f6c7dfee719cf9b45196 HTTP/1.1
+content-type: application/json
 
-###
-GET http://localhost:8080/user/62bf3ae5770da253534da500
+{
+        "userName": "BigBoyBodyBuilder",
+        "password": "987654321",
+        "age": 23,
+        "sex": "male",
+        "height": "5'8",
+        "weight": 175.2
+   }
+
+###DELETE
+DELETE http://localhost:8080/user/62c1f3b73ca65a8ebbf460a5 HTTP/1.1
+
 
 ### General POST for Plan
 POST http://localhost:8080/plan HTTP/1.1
