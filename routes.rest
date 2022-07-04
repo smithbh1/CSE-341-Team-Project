@@ -101,7 +101,7 @@ Content-Type: application/json
             "time": "6:00 am"
         },
         "lifting":{
-            "muscleGroup": "Earn it",
+            "muscleGroup": "Abs",
             "numberDays": 25,
             "time": "6:00 pm"
         }
@@ -112,4 +112,32 @@ Content-Type: application/json
 GET http://localhost:8080/plan
 
 ### General GET for a specific Plan
-GET http://localhost:8080/plan/62bf81daa2ba168c1b4f992a
+GET http://localhost:8080/plan/62bfa0fcfc815b2f48c71bc6
+
+### General GET for Workout
+GET http://localhost:8080/workout 
+
+### General POST for Workout
+POST http://localhost:8080/workout HTTP/1.1
+Content-Type: application/json
+
+{
+    "description": "Workout 1 hour 5 days per week",
+    "cardio":{
+        "name": "Run to lose it",
+        "time": "6:00 am",
+        "pace": "8 miles/hour",
+        "avgHeartRate": "180"
+
+    },
+    "lifting":{
+        "muscleGroup": "Abs",
+        "liftName": "Ab Crunch",
+        "sets": "4",
+        "reps": "20",
+        "weight": "90kg"
+    }
+}
+
+### General GET for a specific Workout
+GET http://localhost:8080/workout/62c3540406e81165a3a1aff5
