@@ -111,8 +111,39 @@ Content-Type: application/json
 ### General GET for Plan
 GET http://localhost:8080/plan
 
-### General GET for a specific Plan
+### GET for a specific Plan
 GET http://localhost:8080/plan/62bfa0fcfc815b2f48c71bc6
+
+### General POST for Plan
+PUT http://localhost:8080/plan/62c353a706e81165a3a1aff3 HTTP/1.1
+Content-Type: application/json
+
+{
+    "diet": {
+      "description": "Loose 20 lb's in 4 weeks",
+      "dietName": "Loose 20 diet",
+      "calories": 2000,
+      "protein": 250,
+      "carbs": 700,
+      "sugar": 0
+    },
+    "workout": {
+      "description": "Workout 2 hour 5 days per week",
+      "cardio": {
+        "name": "Runner",
+        "numberDays": 20,
+        "time": "6:00 am"
+      },
+      "lifting": {
+        "muscleGroup": "Abs",
+        "numberDays": 20,
+        "time": "6:00 pm"
+      }
+    }
+}
+
+### DELETE a specific Plan
+DELETE http://localhost:8080/plan/62c3531f06e81165a3a1aff1 HTTP/1.1
 
 ### General GET for Workout
 GET http://localhost:8080/workout 

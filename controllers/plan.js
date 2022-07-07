@@ -53,10 +53,33 @@ module.exports.addOne = (req,res) => {
 
 module.exports.editOne = (req,res,next) => {
     // #swagger.tags = ['Plan']
-
+    try {
+        const planId = req.params.id;
+        const plan = req.body;
+        Plan.updateOne({ _id: planId }, plan)
+        .then((data) => {
+            console.log(data);
+            res.status(201).send(data);
+        }).catch((err) => {
+            res.status(500).send({message: err.message || 'Some error ocurred while updating your plan'});
+        });
+    } catch (err) {
+        res.status(500).json(err);
+    }
 };
 
 module.exports.deleteOne =(req,res,next) => {
     // #swagger.tags = ['Plan']
-
+    try {
+        const planId = req.params.id;
+        Plan.deleteOne({ _id: planId })
+        .then((data) => {
+            console.log(data);
+            res.status(201).send(data);
+        }).catch((err) => {
+            res.status(500).send({message: err.message || 'Some error ocurred while deleting your plan'});
+        });
+    } catch (err) {
+        res.status(500).json(err);
+    }
 };
