@@ -31,7 +31,7 @@ const getSingle = async (req,res,next) => {
           })
           .catch((err) => {
             res.status(500).send({
-              message: err.message || 'Some error occurred while retrieving your plan.'
+              message: err.message || 'Some error occurred while retrieving your goal.'
             });
           });
     } catch (err) {
