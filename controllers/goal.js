@@ -23,19 +23,20 @@ const getAll = async (req, res, next) => {
 
 const getSingle = async (req,res,next) => {
     // #swagger.tags = ['Goals']
-    if (!ObjectId.isValid(req.params.id)) {
-        res.status(400).json('Must use a valid contact id to find a contact.');
-      }
-      const userId = new ObjectId(req.params.id);
-      Goal
-      .find({_id: userId})
-      .toArray((err, result) => {
-        if (err){
-            res.status(400).json({message: err});
-        }
-        res.setHeader('Content-Type', 'application/json');
-        res.status(200).json(result[0]);
-      });
+    try {
+        const goalId = req.params.id;
+        Goal.find({ _id: goalId })
+        .then((data) => {
+            res.status(200).send(data);
+          })
+          .catch((err) => {
+            res.status(500).send({
+              message: err.message || 'Some error occurred while retrieving your plan.'
+            });
+          });
+    } catch (err) {
+        res.status(500).json(err);
+    } 
 
 };
 
