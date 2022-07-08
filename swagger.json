@@ -180,11 +180,14 @@
         "tags": [
           "Plan"
         ],
-        "description": "",
+        "description": "Brings all plans added to the app",
         "parameters": [],
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
           },
           "404": {
             "description": "Not Found"
@@ -270,8 +273,8 @@
           }
         ],
         "responses": {
-          "200": {
-            "description": "OK"
+          "201": {
+            "description": "Plan Created"
           },
           "500": {
             "description": "Internal Server Error"
@@ -284,7 +287,7 @@
         "tags": [
           "Plan"
         ],
-        "description": "",
+        "description": "Process to bring one plan to be checked",
         "parameters": [
           {
             "name": "id",
@@ -299,6 +302,12 @@
           },
           "400": {
             "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       },
@@ -306,22 +315,101 @@
         "tags": [
           "Plan"
         ],
-        "description": "",
+        "description": "Process to modify a plan already created",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
             "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "diet": {
+                  "type": "object",
+                  "properties": {
+                    "description": {
+                      "type": "string"
+                    },
+                    "dietName": {
+                      "type": "string"
+                    },
+                    "calories": {
+                      "type": "number"
+                    },
+                    "protein": {
+                      "type": "number"
+                    },
+                    "carbs": {
+                      "type": "number"
+                    },
+                    "sugar": {
+                      "type": "number"
+                    }
+                  } 
+                },
+                "workout": {
+                  "type": "object",
+                  "properties": {
+                    "description": {
+                      "type": "string"
+                    },
+                    "cardio": {
+                      "type": "object",
+                      "properties": {
+                        "name": {
+                          "type": "string"
+                        },
+                        "numberDays": {
+                          "type": "number"
+                        },
+                        "time": {
+                          "type": "string"
+                        }
+                      }                      
+                    },
+                    "lifting": {
+                      "type": "object",
+                      "properties": {
+                        "muscleGroup": {
+                          "type": "string"
+                        },
+                        "numberDays": {
+                          "type": "number"
+                        },
+                        "time": {
+                          "type": "string"
+                        }
+                      }                      
+                    }
+                  }                  
+                }  
+              }
+            }
           }
         ],
-        "responses": {}
+        "responses": {
+          "201": {
+            "description": "Plan Updated"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
       },
       "delete": {
         "tags": [
           "Plan"
         ],
-        "description": "",
+        "description": "Process to delete a plan",
         "parameters": [
           {
             "name": "id",
@@ -330,7 +418,20 @@
             "type": "string"
           }
         ],
-        "responses": {}
+        "responses": {
+          "201": {
+            "description": "Plan Deleted"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
       }
     },
     "/workout/": {
