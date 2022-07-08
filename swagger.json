@@ -186,6 +186,9 @@
           "200": {
             "description": "OK"
           },
+          "400": {
+            "description": "Bad Request"
+          },
           "404": {
             "description": "Not Found"
           },
@@ -270,8 +273,8 @@
           }
         ],
         "responses": {
-          "200": {
-            "description": "OK"
+          "201": {
+            "description": "Plan Created"
           },
           "500": {
             "description": "Internal Server Error"
@@ -299,6 +302,12 @@
           },
           "400": {
             "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       },
@@ -386,7 +395,7 @@
         ],
         "responses": {
           "201": {
-            "description": "Plan updated"
+            "description": "Plan Updated"
           },
           "404": {
             "description": "Not Found"
@@ -410,11 +419,17 @@
           }
         ],
         "responses": {
-          "200": {
-            "description": "OK"
+          "201": {
+            "description": "Plan Deleted"
           },
           "400": {
             "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       }
