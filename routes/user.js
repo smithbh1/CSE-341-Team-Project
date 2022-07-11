@@ -13,6 +13,5 @@ router.put('/:id', userController.editOne);
 
 router.delete('/:id', userController.deleteOne);
 
-router.use('/', require('./auth'));
 
 module.exports = router;
