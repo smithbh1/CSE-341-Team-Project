@@ -10,8 +10,8 @@ const getAll = async (req, res, next) => {
     .then((data) => {
         if(!data) res.status(404).send({message:'Nothing to Display'});
         else {
-            res.send(data);
-            console.log(data);
+            res.status(200).send(data);
+            console.log(data);            
         }
     })
     .catch((err) => {

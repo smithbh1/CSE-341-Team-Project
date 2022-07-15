@@ -5,43 +5,130 @@
     "description": "Create a workout health plan and track your progress with this health application",
     "version": "1.0.0"
   },
+  "securityDefinitions": {
+    "Auth0": {
+        "type": "oauth2",
+        "description": "Auth0",
+        "authorizationUrl": "https://dev-e4hgw77q.us.auth0.com",
+        "token Url": "https://auth0.com/docs/api/authentication#get-token",
+        "x-tokenName": "id_token",
+        "flow": "implicit",
+        "scopes": {
+            "read:User": "read User data"
+        }
+    }
+},
   "host": "health-tracking-app.herokuapp.com",
   "basePath": "/",
+  "tags": [
+    {
+        "name": "Default",
+        "description": "api-docs"
+      },
+    {
+      "name": "User",
+      "description": "Operations for user information"
+    },
+    {
+      "name": "Goals",
+      "description": "Operations for Goal information"
+    },
+    {
+      "name": "Plan",
+      "description": "Operations for Plan information"
+    },
+    {
+      "name": "Workout",
+      "description": "Operations for Workout tracking"
+    },
+    {
+      "name": "Diet",
+      "description": "Operations for Diet/Meal tracking"
+    }
+  ],
   "schemes": [
     "https"
   ],
   "paths": {
     "/api-docs": {
       "get": {
-        "description": "",
+        "tags": ["Default"],
+        "description": "Gets the raw API-DOCS code.",
         "parameters": [],
         "responses": {}
       }
     },
     "/user/": {
       "get": {
-        "tags": [
-          "User"
-        ],
-        "description": "",
+        "tags": ["User"],
+        "description": "Gets all the Users information",
+        "produces": ["application/json"],
         "parameters": [],
-        "responses": {}
+        "responses": {
+            "200": {
+                "description": "OK"
+              },
+            "404": {
+                "description": "Not Found"
+              },
+            "500": {
+                "description": "Internal Server Error"
+              }
+        }
       },
       "post": {
-        "tags": [
-          "User"
+        "tags": ["User"],
+        "description": "Adds a User to the Database",
+        "parameters": [
+            {
+                "name": "body",
+                "in": "body",
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "userName": {
+                      "example": "TestUser"
+                    },
+                    "password": {
+                      "example": "myBestPa$$word123"
+                    },
+                    "age": {
+                      "example": 30
+                    },
+                    "sex": {
+                      "example": "Male"
+                    },
+                    "height": {
+                      "example": "6 foot"
+                    },
+                    "weight": {
+                      "example": 180
+                    }
+                  }
+                }
+              }
         ],
-        "description": "",
-        "parameters": [],
-        "responses": {}
+        "responses": {
+            "200": {
+                "description": "OK"
+              },              
+            "400": {
+                "description": "Bad Request"
+              }, 
+            "404": {
+                "description": "Not Found"
+              },
+            "500": {
+                "description": "Internal Server Error"
+              }
+        }
       }
     },
     "/user/{id}": {
       "get": {
-        "tags": [
-          "User"
-        ],
-        "description": "",
+        "tags": ["User"],
+        "description": "Gets one users Data based on a unique ID",
+        "produces":["application/json"],
         "parameters": [
           {
             "name": "id",
@@ -50,28 +137,79 @@
             "type": "string"
           }
         ],
-        "responses": {}
+        "responses": {
+            "200": {
+                "description": "OK"
+              },              
+            "400": {
+                "description": "Bad Request"
+              }, 
+            "404": {
+                "description": "Not Found"
+              },
+            "500": {
+                "description": "Internal Server Error"
+              }
+        }
       },
       "put": {
         "tags": [
           "User"
         ],
-        "description": "",
+        "description": "Updates a Users Data based on a unique ID",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
             "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "userName": {
+                  "example": "updatedTestUser"
+                },
+                "password": {
+                  "example": "updatedMyBestPa$$word123"
+                },
+                "age": {
+                  "example": 35
+                },
+                "sex": {
+                  "example": "Female"
+                },
+                "height": {
+                  "example": "5 foot"
+                },
+                "weight": {
+                  "example": 120
+                }
+              }
+            }
           }
         ],
-        "responses": {}
+        "responses": {
+            "200": {
+                "description": "OK"
+              },              
+            "400": {
+                "description": "Bad Request"
+              }, 
+            "404": {
+                "description": "Not Found"
+              },
+            "500": {
+                "description": "Internal Server Error"
+              }
+        }
       },
       "delete": {
-        "tags": [
-          "User"
-        ],
-        "description": "",
+        "tags": ["User"],
+        "description": "Deletes a Single User form the Database",
         "parameters": [
           {
             "name": "id",
@@ -80,50 +218,99 @@
             "type": "string"
           }
         ],
-        "responses": {}
+        "responses": {
+            "201": {
+                "description": "Accepted"
+              },
+              "500": {
+                "description": "Internal Server Error"
+              }
+        }
       }
     },
     "/goal/": {
       "get": {
-        "tags": [
-          "Goals"
-        ],
-        "description": "",
+        "tags": ["Goals"],
+        "description": "Gets all the Goals",
+        "produces":["application/json"],
         "parameters": [],
         "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "404": {
-            "description": "Not Found"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
+            "200": {
+                "description": "OK"
+              },
+            "404": {
+                "description": "Not Found"
+              },
+            "500": {
+                "description": "Internal Server Error"
+              }
         }
       },
       "post": {
-        "tags": [
-          "Goals"
+        "tags": ["Goals"],
+        "description": "Adds a Goal into the Database",
+        "parameters": [
+            {
+                "name": "body",
+                "in": "body",
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "health": {
+                        "type":"object",
+                        "properties":{
+                            "description": {
+                                "example": "Test goal: weight Loss"
+                              },
+                              "weight": {
+                                "example": 30
+                              },
+                              "calories": {
+                                "example": 1800
+                              },
+                              "heartRate": {
+                                "example": 65
+                              }
+                        }
+                      },
+                    "physical": {
+                        "type":"object",
+                        "properties":{
+                            "description": {
+                                "example": "Test: running"
+                              },
+                              "liftName": {
+                                "example": "Test Marathon"
+                              },
+                              "weightTime": {
+                                "example": "Test: Time"
+                              }
+                        }
+                    }
+                  }
+                }
+              }
         ],
-        "description": "",
-        "parameters": [],
         "responses": {
-          "201": {
-            "description": "Created"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
+            "200": {
+                "description": "OK"
+              },              
+            "400": {
+                "description": "Bad Request"
+              }, 
+            "404": {
+                "description": "Not Found"
+              },
+            "500": {
+                "description": "Internal Server Error"
+              }
         }
       }
     },
     "/goal/{id}": {
       "get": {
-        "tags": [
-          "Goals"
-        ],
-        "description": "",
+        "tags": ["Goals"],
+        "description": "Gets a single Goals data",
         "produces": [
           "application/json"
         ],
@@ -136,34 +323,89 @@
           }
         ],
         "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          }
+            "200": {
+                "description": "OK"
+              },              
+            "400": {
+                "description": "Bad Request"
+              }, 
+            "404": {
+                "description": "Not Found"
+              },
+            "500": {
+                "description": "Internal Server Error"
+              }
         }
       },
       "put": {
-        "tags": [
-          "Goals"
-        ],
-        "description": "",
+        "tags": ["Goals"],
+        "description": "Updates a Goal based on a unique ID",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
             "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "health": {
+                    "type":"object",
+                    "properties":{
+                        "description": {
+                            "example": "Updated test goal: weight Loss"
+                          },
+                          "weight": {
+                            "example": 50
+                          },
+                          "calories": {
+                            "example": 1500
+                          },
+                          "heartRate": {
+                            "example": 50
+                          }
+                    }
+                  },
+                "physical": {
+                    "type":"object",
+                    "properties":{
+                        "description": {
+                            "example": "Updated test: running"
+                          },
+                          "liftName": {
+                            "example": "Updated test Marathon"
+                          },
+                          "weightTime": {
+                            "example": "Updated test: Time"
+                          }
+                    }
+                }
+              }
+            }
           }
         ],
-        "responses": {}
+        "responses": {
+            "200": {
+                "description": "OK"
+              },              
+            "400": {
+                "description": "Bad Request"
+              }, 
+            "404": {
+                "description": "Not Found"
+              },
+            "500": {
+                "description": "Internal Server Error"
+              }
+        }
       },
       "delete": {
-        "tags": [
-          "Goals"
-        ],
-        "description": "",
+        "tags": ["Goals"],
+        "description": "Deletes a Single Goal form the Database",
         "parameters": [
           {
             "name": "id",
@@ -172,7 +414,14 @@
             "type": "string"
           }
         ],
-        "responses": {}
+        "responses": {
+            "201": {
+                "description": "Accepted"
+              },
+              "500": {
+                "description": "Internal Server Error"
+              }
+        }
       }
     },
     "/plan/": {
@@ -198,9 +447,7 @@
         }
       },
       "post": {
-        "tags": [
-          "Plan"
-        ],
+        "tags": ["Plan"],
         "description": "Process to create a plan",
         "parameters": [
           {
@@ -284,9 +531,7 @@
     },
     "/plan/{id}": {
       "get": {
-        "tags": [
-          "Plan"
-        ],
+        "tags": ["Plan"],
         "description": "Process to bring one plan to be checked",
         "parameters": [
           {
@@ -312,9 +557,7 @@
         }
       },
       "put": {
-        "tags": [
-          "Plan"
-        ],
+        "tags": ["Plan"],
         "description": "Process to modify a plan already created",
         "parameters": [
           {
@@ -406,9 +649,7 @@
         }
       },
       "delete": {
-        "tags": [
-          "Plan"
-        ],
+        "tags": ["Plan"],
         "description": "Process to delete a plan",
         "parameters": [
           {
@@ -436,28 +677,102 @@
     },
     "/workout/": {
       "get": {
-        "tags": [
-          "Workout"
-        ],
-        "description": "",
+        "tags": ["Workout"],
+        "description": "Gets all the workout Data",
+        "produces":["application/json"],
         "parameters": [],
-        "responses": {}
+        "responses": {
+            "200": {
+                "description": "OK"
+              },
+            "404": {
+                "description": "Not Found"
+              },
+            "500": {
+                "description": "Internal Server Error"
+              }
+        }
       },
       "post": {
-        "tags": [
-          "Workout"
+        "tags": ["Workout"],
+        "description": "Adds a Workout into the Database",
+        "parameters": [
+            {
+                "name": "body",
+                "in": "body",
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "workout": {
+                        "type":"object",
+                        "properties":{
+                            "description": {
+                                "example": "Test goal: weight Loss"
+                              },
+                              "cardio":{
+                                "type":"object",
+                                "properties":{
+                                    "name": {
+                                        "example": "Test Cardio"
+                                      },
+                                      "time": {
+                                        "example": "test hours"
+                                      },
+                                      "pace": {
+                                        "example": "test mph"
+                                      },
+                                      "avgHeartRate": {
+                                        "example": "test 100BPM"
+                                      }
+                                }
+                              },
+                              "lifting":{
+                                "type":"object",
+                                "properties":{
+                                    "muscleGroup": {
+                                        "example": "Test Body"
+                                      },
+                                      "liftName": {
+                                        "example": "Test Press"
+                                      },
+                                      "sets": {
+                                        "example": 5
+                                      },
+                                      "reps": {
+                                        "example": 10
+                                      },
+                                      "weight":{
+                                        "example": 200
+                                      }
+                                }
+                              }
+                        }
+                      }
+                  }
+                }
+              }
         ],
-        "description": "",
-        "parameters": [],
-        "responses": {}
+        "responses": {
+            "200": {
+                "description": "OK"
+              },              
+            "400": {
+                "description": "Bad Request"
+              }, 
+            "404": {
+                "description": "Not Found"
+              },
+            "500": {
+                "description": "Internal Server Error"
+              }
+        }
       }
     },
     "/workout/{id}": {
       "get": {
-        "tags": [
-          "Workout"
-        ],
-        "description": "",
+        "tags": ["Workout"],
+        "description": "Gets a single Workouts data",
+        "produces":["application/json"],
         "parameters": [
           {
             "name": "id",
@@ -466,28 +781,104 @@
             "type": "string"
           }
         ],
-        "responses": {}
+        "responses": {
+            "200": {
+                "description": "OK"
+              },              
+            "400": {
+                "description": "Bad Request"
+              }, 
+            "404": {
+                "description": "Not Found"
+              },
+            "500": {
+                "description": "Internal Server Error"
+              }
+        }
       },
       "put": {
-        "tags": [
-          "Workout"
-        ],
-        "description": "",
+        "tags": ["Workout"],
+        "description": "Updates a Workout based on a unique ID",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
             "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "workout": {
+                    "type":"object",
+                    "properties":{
+                        "description": {
+                            "example": "Updated Test goal: weight Loss"
+                          },
+                          "cardio":{
+                            "type":"object",
+                            "properties":{
+                                "name": {
+                                    "example": "Updated Test Cardio"
+                                  },
+                                  "time": {
+                                    "example": "Updated test hours"
+                                  },
+                                  "pace": {
+                                    "example": "Updated test mph"
+                                  },
+                                  "avgHeartRate": {
+                                    "example": "Updated test 100BPM"
+                                  }
+                            }
+                          },
+                          "lifting":{
+                            "type":"object",
+                            "properties":{
+                                "muscleGroup": {
+                                    "example": "Updated Test Body"
+                                  },
+                                  "liftName": {
+                                    "example": "Updated Test Press"
+                                  },
+                                  "sets": {
+                                    "example": 3
+                                  },
+                                  "reps": {
+                                    "example": 5
+                                  },
+                                  "weight":{
+                                    "example": 315
+                                  }
+                            }
+                          }
+                    }
+                  }
+              }
+            }
           }
         ],
-        "responses": {}
+        "responses": {
+            "200": {
+                "description": "OK"
+              },              
+            "400": {
+                "description": "Bad Request"
+              }, 
+            "404": {
+                "description": "Not Found"
+              },
+            "500": {
+                "description": "Internal Server Error"
+              }
+        }
       },
       "delete": {
-        "tags": [
-          "Workout"
-        ],
-        "description": "",
+        "tags": ["Workout"],
+        "description": "Deletes a single Workout form the Database",
         "parameters": [
           {
             "name": "id",
@@ -496,15 +887,21 @@
             "type": "string"
           }
         ],
-        "responses": {}
+        "responses": {
+            "201": {
+                "description": "Accepted"
+              },
+              "500": {
+                "description": "Internal Server Error"
+              }
+        }
       }
     },
     "/diet/": {
       "get": {
-        "tags": [
-          "Diets"
-        ],
-        "description": "",
+        "tags": ["Diets"],
+        "description": "Gets all the Diets",
+        "produces":["application/json"],
         "parameters": [],
         "responses": {
           "200": {
@@ -519,27 +916,66 @@
         }
       },
       "post": {
-        "tags": [
-          "Diets"
+        "tags": ["Diets"],
+        "description": "Adds a Diet/Meal into the Database",
+        "parameters": [
+            {
+                "name": "body",
+                "in": "body",
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "diet": {
+                        "type":"object",
+                        "properties":{
+                            "description":{
+                                "example": "Test Meal"
+                              },
+                              "dietName": {
+                                "example": "Test Diet"
+                              },
+                              "calories": {
+                                "example": 500
+                              },
+                              "protein": {
+                                "example": 50
+                              },
+                              "carbs": {
+                                "example": 100
+                              },
+                              "sugar": {
+                                "example": 10
+                              },
+                              "weight":{
+                                "example": "test oz"
+                              }
+                        }
+                    
+                  }
+                }
+              }
+            }
         ],
-        "description": "",
-        "parameters": [],
         "responses": {
-          "201": {
-            "description": "Created"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
+            "200": {
+                "description": "OK"
+              },              
+            "400": {
+                "description": "Bad Request"
+              }, 
+            "404": {
+                "description": "Not Found"
+              },
+            "500": {
+                "description": "Internal Server Error"
+              }
         }
       }
     },
     "/diet/{id}": {
       "get": {
-        "tags": [
-          "Diets"
-        ],
-        "description": "",
+        "tags": ["Diets"],
+        "description": "Gets a single Diets data",
         "produces": [
           "application/json"
         ],
@@ -552,34 +988,85 @@
           }
         ],
         "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          }
+            "200": {
+                "description": "OK"
+              },              
+            "400": {
+                "description": "Bad Request"
+              }, 
+            "404": {
+                "description": "Not Found"
+              },
+            "500": {
+                "description": "Internal Server Error"
+              }
         }
       },
       "put": {
-        "tags": [
-          "Diets"
-        ],
-        "description": "",
+        "tags": ["Diets"],
+        "description": "Updates a Diet based on a unique ID",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
             "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "diet": {
+                    "type":"object",
+                    "properties":{
+                        "description":{
+                            "example": "Test Meal"
+                          },
+                          "dietName": {
+                            "example": "Test Diet"
+                          },
+                          "calories": {
+                            "example": 500
+                          },
+                          "protein": {
+                            "example": 50
+                          },
+                          "carbs": {
+                            "example": 100
+                          },
+                          "sugar": {
+                            "example": 10
+                          },
+                          "weight":{
+                            "example": "test oz"
+                          }
+                    }
+                
+              }
+            }
           }
+        }
         ],
-        "responses": {}
+        "responses": {
+            "200": {
+                "description": "OK"
+              },              
+            "400": {
+                "description": "Bad Request"
+              }, 
+            "404": {
+                "description": "Not Found"
+              },
+            "500": {
+                "description": "Internal Server Error"
+              }
+        }
       },
       "delete": {
-        "tags": [
-          "Diets"
-        ],
-        "description": "",
+        "tags": ["Diets"],
+        "description": "Deletes a single Diet form the Database",
         "parameters": [
           {
             "name": "id",
@@ -588,7 +1075,14 @@
             "type": "string"
           }
         ],
-        "responses": {}
+        "responses": {
+            "201": {
+                "description": "Accepted"
+              },
+              "500": {
+                "description": "Internal Server Error"
+              }
+        }
       }
     }
   }
