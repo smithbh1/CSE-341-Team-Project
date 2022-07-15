@@ -30,7 +30,7 @@
       "description": "Operations for user information"
     },
     {
-      "name": "Goals",
+      "name": "Goal",
       "description": "Operations for Goal information"
     },
     {
@@ -236,7 +236,7 @@
     },
     "/goal/": {
       "get": {
-        "tags": ["Goals"],
+        "tags": ["Goal"],
         "description": "Gets all the Goals",
         "produces":["application/json"],
         "parameters": [],
@@ -256,7 +256,7 @@
         }
       },
       "post": {
-        "tags": ["Goals"],
+        "tags": ["Goal"],
         "description": "Adds a Goal into the Database",
         "parameters": [
             {
@@ -315,7 +315,7 @@
     },
     "/goal/{id}": {
       "get": {
-        "tags": ["Goals"],
+        "tags": ["Goal"],
         "description": "Gets a single Goals data",
         "produces": [
           "application/json"
@@ -344,7 +344,7 @@
         }
       },
       "put": {
-        "tags": ["Goals"],
+        "tags": ["Goal"],
         "description": "Updates a Goal based on a unique ID",
         "parameters": [
           {
@@ -410,7 +410,7 @@
         }
       },
       "delete": {
-        "tags": ["Goals"],
+        "tags": ["Goal"],
         "description": "Deletes a Single Goal form the Database",
         "parameters": [
           {
@@ -917,7 +917,7 @@
     },
     "/diet/": {
       "get": {
-        "tags": ["Diets"],
+        "tags": ["Diet"],
         "description": "Gets all the Diets",
         "produces":["application/json"],
         "parameters": [],
@@ -937,7 +937,7 @@
         }
       },
       "post": {
-        "tags": ["Diets"],
+        "tags": ["Diet"],
         "description": "Adds a Diet/Meal into the Database",
         "parameters": [
             {
@@ -992,7 +992,7 @@
     },
     "/diet/{id}": {
       "get": {
-        "tags": ["Diets"],
+        "tags": ["Diet"],
         "description": "Gets a single Diets data",
         "produces": [
           "application/json"
@@ -1021,7 +1021,7 @@
         }
       },
       "put": {
-        "tags": ["Diets"],
+        "tags": ["Diet"],
         "description": "Updates a Diet based on a unique ID",
         "parameters": [
           {
@@ -1083,7 +1083,7 @@
         }
       },
       "delete": {
-        "tags": ["Diets"],
+        "tags": ["Diet"],
         "description": "Deletes a single Diet form the Database",
         "parameters": [
           {
