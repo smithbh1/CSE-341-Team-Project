@@ -27,21 +27,44 @@ Content-Type: application/json
 GET http://localhost:8080/diet
 
 ###
+GET http://localhost:8080/diet/62d058ea951648f4bca07777
+
+###
 POST http://localhost:8080/diet HTTP/1.1
 Content-Type: application/json
 
 {
    "diet":{
-        "description": "Loose 10 lb's in 5 weeks",
-        "dietName": "Loose 10 diet",
+        "description": "Delete Me",
+        "dietName": "To test the delete",
         "calories": "1800",
         "protein": "200",
-        "carbs": "900",
+        "carbs": "300",
         "sugar": "0",
         "weight": "175"
    }
         
 }
+
+###
+PUT http://localhost:8080/diet/62d05b37951648f4bca0777d HTTP/1.1
+Content-Type: application/json
+
+{
+   "diet":{
+        "description": "Dont eat any food for 1 day",
+        "dietName": "Fast Cleanse",
+        "calories": "0",
+        "protein": "0",
+        "carbs": "0",
+        "sugar": "0",
+        "weight": "175"
+   }
+        
+}
+
+###
+DELETE http://localhost:8080/diet/62d05c65951648f4bca07784
 
 ###GET all
 GET http://localhost:8080/user
