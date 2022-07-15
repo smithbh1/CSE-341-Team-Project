@@ -77,15 +77,16 @@ const editOne = async (req,res,next) => {
 
 const deleteOne = async (req,res,next) => {
     // #swagger.tags = ['Diets']
+    const userId = new ObjectId(req.params.id);
     Diet
-    .deleteOne()
+    .deleteOne({_id: userId})
     .then((data) => {
         console.log(data);
         res.status(201).send(data);
     })
     .catch((err) => {
         res.status(500).send({
-            message: err.message || 'Error occured while trying to delete goal.'
+            message: err.message || 'Error occured while trying to delete the diet.'
         });
     });
 
