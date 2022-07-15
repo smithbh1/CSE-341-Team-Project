@@ -1,0 +1,50 @@
+{
+    "workout-1": {
+        "description": "Swam in the lap pool and worked Legs",
+         "cardio":{
+             "name": "freestyle swim",
+             "time": "30 minutes",
+             "pace": "2 laps every 10 minutes",
+             "avgHeartRate": "120 bpm"
+         },
+         "lifting":{
+             "muscleGroup": "Legs",
+             "liftName":"Air Squat",
+             "sets":4,
+             "reps":25,
+             "weight":0
+         }
+     },
+     "workout-2": {
+        "description": "Heavy Chest Day and end with 1 mile run",
+         "cardio":{
+             "name": "1 mile Run",
+             "time": "9 minutes",
+             "pace": "6.5 mph",
+             "avgHeartRate": "170"
+         },
+         "lifting":{
+             "muscleGroup": "Chest Day",
+             "liftName":"Bench Press",
+             "sets":5,
+             "reps":5,
+             "weight":225
+         }
+     },
+     "workout-3": {
+        "description": "Back Day",
+         "cardio":{
+             "name": "Row",
+             "time": "30 minutes",
+             "pace": "250 meters a minute",
+             "avgHeartRate": "190 BPM"
+         },
+         "lifting":{
+             "muscleGroup": "Back",
+             "liftName":"Dead Lift",
+             "sets":4,
+             "reps":10,
+             "weight":225
+         }
+     }
+ }

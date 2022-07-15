@@ -1,0 +1,41 @@
+{
+   "goal-1": {
+        "health":{
+            "description": "Drop a pant size.",
+            "weight": 200,
+            "calories": 1800,
+            "heartRate": 65
+        },
+        "physical":{
+            "description": "Run a a 5k",
+            "liftName":"Labor Day 5K",
+            "weightTime":"30 minutes"
+        }
+    },
+    "goal-2": {
+        "health":{
+            "description": "Swim a mile.",
+            "weight": 180,
+            "calories": 2500,
+            "heartRate": 50
+        },
+        "physical":{
+            "description": "Be able to swim for a mile.",
+            "liftName":"Seal Swim",
+            "weightTime":"By the end of 2022"
+        }
+    },
+    "goal-3": {
+        "health":{
+            "description": "Hit my Goal Weight!!",
+            "weight": 150,
+            "calories": 1500,
+            "heartRate": 50
+        },
+        "physical":{
+            "description": "HIT workout at least 3 times a week",
+            "liftName":"Daily WOD",
+            "weightTime":"At least a 30 minute workout"
+        }
+    }
+}

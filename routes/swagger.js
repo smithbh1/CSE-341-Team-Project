@@ -1,23 +1,10 @@
 const router = require('express').Router();
 const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('../swagger.json');
-const { auth,  requiresAuth } = require('express-openid-connect');
-
-const config = {
-    authRequired: false,
-    auth0Logout: true,
-    secret: process.env.SECRET,
-    // baseURL: process.env.BASE_URL_LOCAL,
-    //push to heroku comment ou the line above and use the line below!!!
-    baseURL: process.env.BASE_URL,
-    clientID: process.env.CLIENT_ID,
-    issuerBaseURL: process.env.ISSUER_BASE_URL
-  };
+const { requiresAuth } = require('express-openid-connect');
 
 
-router.use(auth(config));
-
-router.get('/', (req, res) => {
+router.get('/', (req, res, next) => {
     if (req.oidc.isAuthenticated()){
         res.redirect('/main')
     } else {
@@ -26,11 +13,16 @@ router.get('/', (req, res) => {
     })}
 });
 
-router.get('/main', requiresAuth(), (req, res) => {
-   res.render('main', {
-    layout: 'main',
-    name: req.oidc.user.name
-   })
+router.get('/main', (req, res) => {
+    if (req.oidc.isAuthenticated()) {
+        res.render('main', {
+            layout: 'main',
+            name: req.oidc.user.name
+           })
+    } else {
+        res.redirect('/')
+    }
+   
 });
 
 
