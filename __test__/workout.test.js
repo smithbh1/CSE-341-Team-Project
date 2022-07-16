@@ -22,7 +22,7 @@ describe('Behavior of the database to create, find, update, and delete workouts'
     const workouts = db.collection('workouts');
 
     const mockWorkout = {
-        _id: '17',
+        _id: '20',
         workout:{
             description: "Description for the diet",
             cardio:{
@@ -42,7 +42,7 @@ describe('Behavior of the database to create, find, update, and delete workouts'
     };
     await workouts.insertOne(mockWorkout);
 
-    const insertedWorkout = await workouts.findOne({_id: '17'});
+    const insertedWorkout = await workouts.findOne({_id: '20'});
     expect(insertedWorkout).toEqual(mockWorkout);
   });
 
@@ -58,46 +58,61 @@ describe('Behavior of the database to create, find, update, and delete workouts'
   it('should bring a Workout using its id', async () => {
     const workouts = db.collection('workouts');
 
-    const findWorkout = await workouts.find({ _id: '11' });
+    const findWorkout = await workouts.find({ _id: '20' });
 
-    const foundWorkout = await workouts.find({ _id: '11' });
+    const foundWorkout = await workouts.find({ _id: '20' });
     expect(findWorkout).toEqual(foundWorkout);
   });
 
   it('should update a Workout already registered in the database', async () => {
     const workouts = db.collection('workouts');
     const updatedMockWorkout = {
-        "_id": "16",
-        "workout":{
-            "description": "Description for the diet",
-            "cardio":{
-                "name": "cardio name",
-                "time": "how long",
-                "pace": "how fast",
-                "avgHeartRate": "heart Rate"
-            },
-            "lifting":{
-                "muscleGroup": "Muscle Group Worked",
-                "liftName": "lift name",
-                "sets": 5,
-                "reps": 10,
-                "weight": 200,
-            }
-        }
+      _id: '19',
+      workout:{
+          description: "Description for the diet modified",
+          cardio:{
+              name: "cardio name",
+              time: "how long",
+              pace: "how fast",
+              avgHeartRate: "heart Rate"
+          },
+          lifting:{
+              muscleGroup: "Muscle Group Worked",
+              liftName: "lift name",
+              sets: 5,
+              reps: 10,
+              weight: 200,
+          }
+      }
     };
     
-    await workouts.updateOne({ _id: '16' }, { $set:{"diet":{"description":"Description for the diet modified"}} });
+    await workouts.updateOne({ _id: '19' }, { $set:{
+      "workout":{
+        "description":"Description for the diet modified",
+        "cardio":{
+          "name": "cardio name",
+          "time": "how long",
+          "pace": "how fast",
+          "avgHeartRate": "heart Rate"
+          },
+        "lifting":{
+          "muscleGroup": "Muscle Group Worked",
+          "liftName": "lift name",
+          "sets": 5,
+          "reps": 10,
+          "weight": 200
+        }}} });
 
-    const updatedWorkout = await workouts.findOne({ _id: '16' });
+    const updatedWorkout = await workouts.findOne({ _id: '19' });
     expect(updatedWorkout).toEqual(updatedMockWorkout);
   });
 
   it('should delete a Workout from the database', async () => {
     const workouts = db.collection('workouts');
 
-    await workouts.deleteOne({ _id: '10' });
+    await workouts.deleteOne({ _id: '18' });
 
-    const deletedWorkout = await workouts.findOne({ _id: '10' });
+    const deletedWorkout = await workouts.findOne({ _id: '18' });
     expect(deletedWorkout).toEqual(null);
   });
 });

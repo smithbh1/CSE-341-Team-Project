@@ -22,7 +22,7 @@ describe('Behavior of the database to create, find, update, and delete goals', (
     const goals = db.collection('goals');
 
     const mockGoal = {
-        _id: '17',
+        _id: '19',
         health:{
             description: "Description for the Goal",
             weight: 150,
@@ -37,7 +37,7 @@ describe('Behavior of the database to create, find, update, and delete goals', (
     };
     await goals.insertOne(mockGoal);
 
-    const insertedGoal = await goals.findOne({_id: '17'});
+    const insertedGoal = await goals.findOne({_id: '19'});
     expect(insertedGoal).toEqual(mockGoal);
   });
 
@@ -53,41 +53,47 @@ describe('Behavior of the database to create, find, update, and delete goals', (
   it('should bring a Goal using its id', async () => {
     const goals = db.collection('goals');
 
-    const findGoal = await goals.find({ _id: '11' });
+    const findGoal = await goals.find({ _id: '19' });
 
-    const foundGoal = await goals.find({ _id: '11' });
+    const foundGoal = await goals.find({ _id: '19' });
     expect(findGoal).toEqual(foundGoal);
   });
 
   it('should update a Goal already registered in the database', async () => {
     const goals = db.collection('goals');
     const updatedMockGoal = {
-        "_id": "16",
-        "health":{
-            "description": "Description for the Goal",
-            "weight": 150,
-            "calories": 1800,
-            "heartRate": 200
-        },
-        "physical": {
-            "description": "Description for the Goal",
-            "liftName": "Workout Name",
-            "weightTime": "time"
-        }
+      _id: '17',
+      health:{
+          description: "Description for the Goal modified",
+          weight: 150,
+          calories: 1800,
+          heartRate: 200
+      },
+      physical: {
+          description: "Description for the Goal",
+          liftName: "Workout Name",
+          weightTime: "time"
+      }  
     };
     
-    await goals.updateOne({ _id: '16' }, { $set:{"goal":{"description":"Description for the Goal modified"}} });
+    await goals.updateOne({ _id: '18' }, { $set:{
+      "health":{
+        "description":"Description for the Goal modified",
+        "weight": 150,
+        "calories": 1800,
+        "heartRate": 200
+      }} });
 
-    const updatedGoal = await goals.findOne({ _id: '16' });
+    const updatedGoal = await goals.findOne({ _id: '18' });
     expect(updatedGoal).toEqual(updatedMockGoal);
   });
 
   it('should delete a Goal from the database', async () => {
     const goals = db.collection('goals');
 
-    await goals.deleteOne({ _id: '10' });
+    await goals.deleteOne({ _id: '17' });
 
-    const deletedGoal = await goals.findOne({ _id: '10' });
+    const deletedGoal = await goals.findOne({ _id: '17' });
     expect(deletedGoal).toEqual(null);
   });
 });
