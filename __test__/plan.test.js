@@ -22,7 +22,7 @@ describe('Behavior of the database to create, find, update, and delete plans', (
     const plans = db.collection('plans');
 
     const mockPlan = {
-        _id: '47',
+        _id: '48',
         diet:{
             description: "Description for the diet",
             dietName: "Diet's name",
@@ -48,7 +48,7 @@ describe('Behavior of the database to create, find, update, and delete plans', (
     };
     await plans.insertOne(mockPlan);
 
-    const insertedPlan = await plans.findOne({_id: '47'});
+    const insertedPlan = await plans.findOne({_id: '48'});
     expect(insertedPlan).toEqual(mockPlan);
   });
 
@@ -64,9 +64,9 @@ describe('Behavior of the database to create, find, update, and delete plans', (
   it('should bring a plan using its id', async () => {
     const plans = db.collection('plans');
 
-    const findPlan = await plans.find({ _id: '47' });
+    const findPlan = await plans.find({ _id: '48' });
 
-    const foundPlan = await plans.find({ _id: '47' });
+    const foundPlan = await plans.find({ _id: '48' });
     expect(findPlan).toEqual(foundPlan);
   });
 
@@ -74,7 +74,7 @@ describe('Behavior of the database to create, find, update, and delete plans', (
     const plans = db.collection('plans');
 
     const updatedMockPlan = {
-      _id: '46',
+      _id: '47',
       diet:{
           description: "Description for the diet modified",
           dietName: "Diet's name",
@@ -98,7 +98,7 @@ describe('Behavior of the database to create, find, update, and delete plans', (
           }
       }
     };
-    await plans.updateOne({ _id: '46' }, { $set:{
+    await plans.updateOne({ _id: '47' }, { $set:{
       "diet":{
         "description":"Description for the diet modified",
         "dietName": "Diet's name",
@@ -109,7 +109,7 @@ describe('Behavior of the database to create, find, update, and delete plans', (
         "weight": 175
       }} });
 
-    const updatedPlan = await plans.findOne({ _id: '46' });
+    const updatedPlan = await plans.findOne({ _id: '47' });
     expect(updatedPlan).toEqual(updatedMockPlan);
   
   });
@@ -117,9 +117,9 @@ describe('Behavior of the database to create, find, update, and delete plans', (
   it('should delete a plan from the database', async () => {
     const plans = db.collection('plans');
 
-    await plans.deleteOne({ _id: '45' });
+    await plans.deleteOne({ _id: '46' });
 
-    const deletedPlan = await plans.findOne({ _id: '45' });
+    const deletedPlan = await plans.findOne({ _id: '46' });
     expect(deletedPlan).toEqual(null);
   });
 });

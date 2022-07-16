@@ -22,7 +22,7 @@ describe('Behavior of the database to create, find, update, and delete goals', (
     const goals = db.collection('goals');
 
     const mockGoal = {
-        _id: '19',
+        _id: '20',
         health:{
             description: "Description for the Goal",
             weight: 150,
@@ -37,7 +37,7 @@ describe('Behavior of the database to create, find, update, and delete goals', (
     };
     await goals.insertOne(mockGoal);
 
-    const insertedGoal = await goals.findOne({_id: '19'});
+    const insertedGoal = await goals.findOne({_id: '20'});
     expect(insertedGoal).toEqual(mockGoal);
   });
 
@@ -53,16 +53,16 @@ describe('Behavior of the database to create, find, update, and delete goals', (
   it('should bring a Goal using its id', async () => {
     const goals = db.collection('goals');
 
-    const findGoal = await goals.find({ _id: '19' });
+    const findGoal = await goals.find({ _id: '20' });
 
-    const foundGoal = await goals.find({ _id: '19' });
+    const foundGoal = await goals.find({ _id: '20' });
     expect(findGoal).toEqual(foundGoal);
   });
 
   it('should update a Goal already registered in the database', async () => {
     const goals = db.collection('goals');
     const updatedMockGoal = {
-      _id: '17',
+      _id: '19',
       health:{
           description: "Description for the Goal modified",
           weight: 150,
@@ -76,7 +76,7 @@ describe('Behavior of the database to create, find, update, and delete goals', (
       }  
     };
     
-    await goals.updateOne({ _id: '18' }, { $set:{
+    await goals.updateOne({ _id: '19' }, { $set:{
       "health":{
         "description":"Description for the Goal modified",
         "weight": 150,
@@ -84,16 +84,16 @@ describe('Behavior of the database to create, find, update, and delete goals', (
         "heartRate": 200
       }} });
 
-    const updatedGoal = await goals.findOne({ _id: '18' });
+    const updatedGoal = await goals.findOne({ _id: '19' });
     expect(updatedGoal).toEqual(updatedMockGoal);
   });
 
   it('should delete a Goal from the database', async () => {
     const goals = db.collection('goals');
 
-    await goals.deleteOne({ _id: '17' });
+    await goals.deleteOne({ _id: '18' });
 
-    const deletedGoal = await goals.findOne({ _id: '17' });
+    const deletedGoal = await goals.findOne({ _id: '18' });
     expect(deletedGoal).toEqual(null);
   });
 });

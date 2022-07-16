@@ -22,7 +22,7 @@ describe('Behavior of the database to create, find, update, and delete workouts'
     const workouts = db.collection('workouts');
 
     const mockWorkout = {
-        _id: '20',
+        _id: '21',
         workout:{
             description: "Description for the diet",
             cardio:{
@@ -42,7 +42,7 @@ describe('Behavior of the database to create, find, update, and delete workouts'
     };
     await workouts.insertOne(mockWorkout);
 
-    const insertedWorkout = await workouts.findOne({_id: '20'});
+    const insertedWorkout = await workouts.findOne({_id: '21'});
     expect(insertedWorkout).toEqual(mockWorkout);
   });
 
@@ -58,16 +58,16 @@ describe('Behavior of the database to create, find, update, and delete workouts'
   it('should bring a Workout using its id', async () => {
     const workouts = db.collection('workouts');
 
-    const findWorkout = await workouts.find({ _id: '20' });
+    const findWorkout = await workouts.find({ _id: '21' });
 
-    const foundWorkout = await workouts.find({ _id: '20' });
+    const foundWorkout = await workouts.find({ _id: '21' });
     expect(findWorkout).toEqual(foundWorkout);
   });
 
   it('should update a Workout already registered in the database', async () => {
     const workouts = db.collection('workouts');
     const updatedMockWorkout = {
-      _id: '19',
+      _id: '20',
       workout:{
           description: "Description for the diet modified",
           cardio:{
@@ -86,7 +86,7 @@ describe('Behavior of the database to create, find, update, and delete workouts'
       }
     };
     
-    await workouts.updateOne({ _id: '19' }, { $set:{
+    await workouts.updateOne({ _id: '20' }, { $set:{
       "workout":{
         "description":"Description for the diet modified",
         "cardio":{
@@ -103,16 +103,16 @@ describe('Behavior of the database to create, find, update, and delete workouts'
           "weight": 200
         }}} });
 
-    const updatedWorkout = await workouts.findOne({ _id: '19' });
+    const updatedWorkout = await workouts.findOne({ _id: '20' });
     expect(updatedWorkout).toEqual(updatedMockWorkout);
   });
 
   it('should delete a Workout from the database', async () => {
     const workouts = db.collection('workouts');
 
-    await workouts.deleteOne({ _id: '18' });
+    await workouts.deleteOne({ _id: '19' });
 
-    const deletedWorkout = await workouts.findOne({ _id: '18' });
+    const deletedWorkout = await workouts.findOne({ _id: '19' });
     expect(deletedWorkout).toEqual(null);
   });
 });
